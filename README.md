@@ -1,15 +1,15 @@
-# Redis::Clone
+# Redis-Clone
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/redis/clone`. To experiment with that code, run `bin/console` for an interactive prompt.
+Byoredis - Build your own redis.
 
-TODO: Delete this and the text above, and describe your gem
+Inspired from learning by doing 'Build your own X' style. Currently in developement.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'redis-clone'
+gem 'byoredis'
 ```
 
 And then execute:
@@ -18,12 +18,18 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install redis-clone
+    $ gem install byoredis
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require "byoredis"
 
+host = "127.0.0.1"
+port = "6789"
+
+server = Byoredis::Server.new host, port 
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -40,4 +46,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Redis::Clone project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/redis-clone/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Redis-Clone project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/redis-clone/blob/master/CODE_OF_CONDUCT.md).

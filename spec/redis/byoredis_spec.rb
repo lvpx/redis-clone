@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+require "redis"
 
-RSpec.describe Redis::Clone do
+RSpec.describe Byoredis do
   it "has a version number" do
-    expect(Redis::Clone::VERSION).not_to be nil
+    expect(Byoredis::VERSION).not_to be nil
   end
 
   it "does something useful" do
@@ -13,7 +14,7 @@ RSpec.describe Redis::Clone do
     SERVER_PORT = ENV["SERVER_PORT"]
     SERVER_HOST = ENV["SERVER_HOST"]
     puts "SERVER_PORT - #{SERVER_PORT}"
-    r = Redis::Clone::Server.new(SERVER_HOST, SERVER_PORT)
+    r = Redis.new(SERVER_HOST, SERVER_PORT)
     expect(r.ping).eq("PONG")
   end
 end

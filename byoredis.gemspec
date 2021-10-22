@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/redis/clone/version"
+require_relative "lib/byoredis/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "redis-clone"
-  spec.version       = Redis::Clone::VERSION
+  spec.name          = "byoredis"
+  spec.version       = Byoredis::VERSION
   spec.authors       = ["Lovepreet"]
   spec.email         = ["lovepreetkaul23@gmail.com"]
 
@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency "redis"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
