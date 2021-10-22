@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "socket"
-require "redis"
 require_relative "byoredis/version"
 
 module Byoredis
@@ -10,18 +9,26 @@ module Byoredis
   class Server
     attr_accessor :server
 
-    def initialize(host, port)
+    def initialize(host: "localhost", port: "5000") 
       @server = TCPServer.new(host ,port)
     end
 
     def listen
       loop do
         client = @server.accept
+        handle_client(client)
+      end
+    end
+
+    def handle_client(client)
+      loop do
+        client.gets
         client.write("+PONG\r\n")
       end
     end
+
+    def shutdown
+      @server.shutdown
+    end
   end
 end
-
-server = Byoredis::Server.new "127.0.0.1","6799"
-server.listen
