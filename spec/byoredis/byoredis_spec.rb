@@ -3,7 +3,6 @@ require "redis"
 require "byoredis"
 
 SERVER_PORT = ENV["SERVER_PORT"]
-SERVER_HOST = "localhost"
 
 RSpec.describe Byoredis do
   it "has a version number" do
@@ -11,7 +10,7 @@ RSpec.describe Byoredis do
   end
 
   it "responds to ping" do
-    r = Redis.new  port:SERVER_PORT
+    r = Redis.new port:SERVER_PORT
     expect(r.ping).eql? ("PONG")
   end
 

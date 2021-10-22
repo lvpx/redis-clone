@@ -9,7 +9,7 @@ module Byoredis
   class Server
     attr_accessor :server
 
-    def initialize(host: "localhost", port: "5000") 
+    def initialize(host: "127.0.0.1", port: "5000") 
       @server = TCPServer.new(host ,port)
     end
 
@@ -21,9 +21,11 @@ module Byoredis
     end
 
     def handle_client(client)
-      loop do
-        client.gets
-        client.write("+PONG\r\n")
+      Thread.new do
+        loop do
+          client.gets
+          client.write("+PONG\r\n")
+        end
       end
     end
 
