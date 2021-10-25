@@ -11,22 +11,27 @@ module Byoredis
 
     def initialize(host: "127.0.0.1", port: "5000") 
       @server = TCPServer.new(host ,port)
+      @clients = []
     end
 
     def listen
       loop do
-        client = @server.accept
-        handle_client(client)
+        fds_to_watch = [@server, *@clients]
+        ready_to_read, _, _ = IO.select(fds_to_watch)
+        ready_to_read.each do |ready|
+          if ready == @server
+            @clients << @server.accept    
+          else
+            handle_client(client)
+          end
+          
+        end
       end
     end
 
     def handle_client(client)
-      Thread.new do
-        loop do
-          client.gets
-          client.write("+PONG\r\n")
-        end
-      end
+      client.read_partial(1024)
+      client.write("+PONG\r\n")
     end
 
     def shutdown
